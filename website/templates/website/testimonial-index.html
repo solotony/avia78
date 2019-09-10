@@ -1,0 +1,16 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Отзывы и благодарности{% endblock %}
+{% block description %}Отзывы и благодарности{% endblock %}
+{% block content %}
+<h1>Отзывы и благодарности</h1>
+
+{% for testimonial in testimonials %}
+    <div style="clear:both; margin-top:20px;">
+        <h4><a href="{% url 'testimonials.show' testimonial.pk %}"><img src="{{ testimonial.scan_thumb_url }}" style="float:left;padding-right:20px;"></a>  {{ testimonial.name }}</h4>
+        <p><a href="{% url 'testimonials.show' testimonial.pk %}">{{ testimonial.text | truncatechars:150 }}</a></p>
+    </div>
+    <div style="clear:both"></div>
+{% endfor %}
+
+{% endblock %}
+

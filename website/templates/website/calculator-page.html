@@ -1,0 +1,31 @@
+{% extends "website/layout/public.html" %}
+{% load crispy_forms_filters %}
+{% block title %}Расчет стоимости{% endblock %}
+{% block content %}
+<h1>Расчет стоимости</h1>
+
+<form method="post">{% csrf_token %}
+{{ form.countryFrom | as_crispy_field }}
+{{ form.countryTo | as_crispy_field }}
+{{ form.trby | as_crispy_field }}
+{{ form.type_name | as_crispy_field }}
+{{ form.weight | as_crispy_field }}
+{{ form.volume | as_crispy_field }}
+{{ form.value | as_crispy_field }}
+{{ form.customs_needed | as_crispy_field }}
+<button class="btn btn-warning">Раcсчитать</button>
+
+{% if cost %}
+    <h2>Ориентировочная стоимость перевозки: {{ cost }} $</h2>
+{% endif %}
+
+
+<h2><br>Заполните контакты и получите точный расчет.</h2>
+
+{{ form.name | as_crispy_field }}
+{{ form.email | as_crispy_field }}
+{{ form.phone | as_crispy_field }}
+<button class="btn btn-warning">Запросить цену</button>
+</form>
+
+{% endblock %}

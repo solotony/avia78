@@ -1,0 +1,16 @@
+{% extends 'website/layout/global.html' %}
+{% block layouted_content %}
+{%  load cache %}
+    <header class="page-header page-header2">
+        <!-- RD Navbar -->
+        <div class="rd-navbar-wrap">
+            <nav class="rd-navbar" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true">
+                {% include 'website/el/mainmenu.html' %}
+            </nav>
+        </div>
+        <!-- END RD Navbar -->
+    </header>
+    <main class="page-content">
+    {% block content %}{%  endblock %}
+    </main>
+{% endblock %}

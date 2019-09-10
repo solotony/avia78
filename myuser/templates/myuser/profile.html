@@ -1,0 +1,47 @@
+{% extends "website/layout.html" %}
+{% load staticfiles %}
+
+{% block title %}
+Профайл
+{% endblock %}
+
+{% block description %}
+Профайл
+{% endblock %}
+
+{% block styles %}
+  <link href="{% static 'website/css/page_register.css' %}" type="text/css"  data-template-style="true"  rel="stylesheet" />
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+
+<h1>Профайл</h1>
+
+<p><strong>E-mail '{{ request.user.email }}'</strong></p>
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="bx-authform">
+	<form method="POST" class="post-form">{% csrf_token %}
+		{{ form.as_div }}
+		<button type="submit" class="save btn btn-default">Сохранить</button>
+	</form>
+</div>
+
+{% endblock %}

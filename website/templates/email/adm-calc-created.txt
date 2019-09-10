@@ -1,0 +1,18 @@
+Оформлен заказ на сайте avia78.ru номер {{ order.id }}
+
+ИЗ {% ifnotequal order.countryFrom.title 'другая страна' %} {{ order.countryFrom.title }} {% else %} {{ order.otherCountryFrom }} {% endifnotequal %} {% if order.addressFrom %} {{ order.addressFrom }} {% endif %}
+В {% ifnotequal order.countryTo.title 'другая страна' %} {{ order.countryTo.title }} {% else %} {{ order.otherCountryTo }} {% endifnotequal %} {% if order.addressTo %} {{ order.addressTo }} {% endif %}
+{% if order.type_name %}Груз: {{ order.type_name }}{% endif %}
+{% if order.description %}Описание: {{ order.description }}{% endif %}
+{% if order.weight %}Вес: {{ order.weight }}{% endif %}
+{% if order.volume %}Объем: {{ order.volume  }}{% endif %}
+{% if order.value %}Стоимость груза: {{ order.value }}{% endif %}
+Требуется растаможка: {% if order.customs_needed %}Да{% else %}Нет{% endif %}
+
+Заказчик: {% if order.user.first_name %}{{ order.user.first_name }}{% endif %} {% if order.user.last_name %}{{ order.user.last_name }}{% endif %}
+{% if order.user.email %}E-mail: {{ order.user.email }}{% endif %}
+{% if order.user.phone %}Телефон: {{ order.user.phone }}{% endif %}
+{% if user.is_org %}
+Организация: {{ user.org_name }}
+ИНН: {{ user.org_inn }}
+{% endif %}

@@ -1,0 +1,136 @@
+{% extends "website/layout/internal.html" %}{% load staticfiles %}
+{% block title %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block content %}
+    <!-- About us -->
+    <section class="well-sm-2">
+        <div class="container">
+            <h2 class="line-3">about us</h2>
+            <p class="text-default-2 inset-1 letter-spacing-1">Our company at a glance</p>
+            <div class="row row-50">
+                <div class="col-lg-4">
+                    <p>
+                        Sweet house is the largest full-service real estate company. We offer expertise in the
+                        marketing and sale of a wide range of properties, including residential real estate, farms
+                        and lifestyle blocks, as well as commercial and industrial properties. This includes tourism
+                        and leisure assets such as hotels and motels as well as a range of businesses for sale.
+                    </p>
+                </div>
+                <div class="col-lg-8">
+                    <img  width="770" height="170" alt="" src="{% static 'website/images/page-2_img01.jpg' %}">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END About us -->
+    <!-- Find a Rental -->
+    <section class="well-md-1 bg-3">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-10">
+                    <h2 class="text-white">Find a Rental</h2>
+                    <p class="text-white">
+                        In addition to our online rental locator, we offer area experts that will personally show you rental properties that match your needs. Visit one of our local offices or call to speak with a friendly relocation specialist to begin your apartment or home rental search today.  We are famous for exceptional customer service and personalized attention - something that most online apartment locating services simply don't offer!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Find a Rental -->
+    <!-- Apartment Styles -->
+    <section class="well-sm-3" >
+        <div class="container" data-lightgallery="gallery">
+            <h2 class="line-3">Apartment Styles</h2>
+            <p class="text-default-2 inset-1 letter-spacing-1">We provide all types of apartments</p>
+            <div class="row row-30">
+                <div class="col-lg-4 col-md-4">
+                    <div class="thumb">
+                        <a href="{% static 'website/images/gallery2/page-2_img01_original.jpg' %}" data-lightgallery='item'>
+                            <img src="{% static 'website/images/gallery2/page-2_img01.jpg' %}" width="370" height="324"
+                                 alt="Image 1"/>
+                            <div class="thumb__overlay"></div>
+                            <div class="thumb__overlay1"><span>Luxury properties</span></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="thumb">
+                        <a href="{% static 'website/images/gallery2/page-2_img02_original.jpg' %}" data-lightgallery='item'>
+                            <img src="{% static 'website/images/gallery2/page-2_img02.jpg' %}" width="370" height="324"
+                                 alt="Image 1"/>
+                            <div class="thumb__overlay"></div>
+                            <div class="thumb__overlay1"><span>Vacation rentals</span></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="thumb">
+                        <a href="{% static 'website/images/gallery2/page-2_img03_original.jpg' %}" data-lightgallery='item'>
+                            <img src="{% static 'website/images/gallery2/page-2_img03.jpg' %}" width="370" height="324"
+                                 alt="Image 1"/>
+                            <div class="thumb__overlay"></div>
+                            <div class="thumb__overlay1"><span>Student living</span></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Apartment Styles -->
+    <!-- Premier customer service -->
+    <section class="well-md-1 bg-4">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-10">
+                    <h2 class="text-white">Premier customer service</h2>
+                    <p class="text-white">
+                        Whether you represent a company in need of corporate housing for your employees or you're booking your own short-term accommodations, we offer high quality furnished corporate apartments, condos, and executive rental homes backed by superior customer service.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Premier customer service -->
+    <!-- Why choose us -->
+    <section class="well-sm-4" >
+        <div class="container">
+            <h2 class="line-3">why choose us</h2>
+            <p class="text-default-2 inset-1 letter-spacing-1">It’s easy to rent an apartment with us</p>
+            <div class="row row-60">
+                <div class="col-lg-4 col-md-4">
+                    <h3>Our mission</h3>
+                    <p class="offset-14 letter-spacing-2">
+                        We are committed to connect you with the best service possible, a new breed of real estate. Throw out the traditional sales pitch you find across many real estate companies and get a feel for the market on your own time.
+                    </p>
+                    <a class="btn-xs btn-primary offset-15" href="#">
+                        Read more
+                        <span></span>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h3>Relationships</h3>
+                    <p class="offset-14 letter-spacing-2">
+                        Our company can boast the reputation of the trusted partner known worldwide. We are proud of the uncompromising quality of services we provide. Our team of professionals will happily help you to deal with any issue.
+                    </p>
+                    <a class="btn-xs btn-primary offset-15" href="#">
+                        Read more
+                        <span></span>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h3>Experienced staff </h3>
+                    <p class="offset-14 letter-spacing-2">
+                        Our real estate agents are professional in everything they do. Just call our office or contact the agent you like via email or his/her social profile. You will get all the consultation you need.
+                    </p>
+                    <a class="btn-xs btn-primary offset-15" href="#">
+                        Read more
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Why choose us -->
+
+{% endblock %}

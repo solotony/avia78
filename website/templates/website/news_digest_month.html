@@ -1,0 +1,10 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Список вопросов-ответов за месяц{% endblock %}
+{% block content %}
+<h1>Список вопросов-ответов за месяц {{ month }} {{ year }} года</h1>
+
+{% for post in posts %}
+    <a href="{{ post.get_url_html }}"><b>{{ post.get_header }}</b> {{ post.get_abstract | striptags }}</a><br>
+{% endfor %}
+
+{% endblock %}

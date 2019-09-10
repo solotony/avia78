@@ -1,0 +1,29 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Ваши заказы{% endblock %}
+{% block content %}
+<h1>Ваши заказы</h1>
+
+{% if orders %}
+{% else %}
+<p>У Вас пока нет заказов.</p>
+<p><a href="{% url 'orders.cabinet_create' %}">Создать новый заказ</a></p>
+{% endif  %}
+
+{% if orders %}
+
+<table class="table table-bordered table-active">
+{% for order in orders.all %}
+    <tr>
+        <td>{{ order }}</td>
+        <td><strong>{{ order.countryFrom }}</strong><br><span class="small">{{ order.addressFrom }}</span></td>
+        <td><strong>{{ order.countryTo }}</strong><br><span class="small">{{ order.addressTo }}</span></td>
+        <td><a href="{{ order.getUrl }}">подробнее</a></td>
+    </tr>
+{% endfor %}
+</table>
+
+{%  include 'website/el/paginator.html' with x=orders p='p'  %}
+
+{% endif  %}
+
+{% endblock %}

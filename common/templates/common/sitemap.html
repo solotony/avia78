@@ -1,0 +1,10 @@
+{% extends "common/layout.html" %}
+{% block content %}
+
+<h1>sitemap</h1>
+
+{% for sitemap in sitemaps %}
+    {{ sitemap }}
+{% endfor %}
+
+{% endblock %}

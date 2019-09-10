@@ -1,0 +1,40 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Информация о грузе{% endblock %}
+{% block content %}
+
+{% if cargo.code %}
+
+    <h1>Груз {{ cargo.code }}</h1>
+    <br>
+    <div style="max-width:500px;" class="input-group">
+        <input type="text" class="form-control" id="top-order-search2" placeholder="Номер заказа" value="{{ cargo.code }}">
+        <div class="input-group-append text-center">
+            <a href="javascript:;" class="btn btn-warning text-center" @click="topOrderSearch"><i class="fas fa-search"></i></a>
+        </div>
+    </div>
+    <br>
+    <ul>
+    {% for status in cargo.cargo_statuses.all %}
+        <li>{{ status }}</li>
+    {% endfor %}
+    </ul>
+
+{% else %}
+    <h1>Статус заказа</h1>
+    <br>
+    <div style="max-width:500px;" class="input-group">
+        <input type="text" class="form-control" id="top-order-search2" placeholder="Номер заказа" value="{{ cargo.code }}">
+        <div class="input-group-append text-center">
+            <a href="javascript:;" class="btn btn-warning text-center" @click="topOrderSearch"><i class="fas fa-search"></i></a>
+        </div>
+    </div>
+    <br>
+    <span class="for_example">Введите номер заказа. Например, <a href="/order/cargo/STA-1CL5Y-257R9/">STA-1CL5Y-257R9</a> или <a href="/order/cargo/STA-4JPTC-132X5/">STA-4JPTC-132X5</a></span>
+    <br>
+    <br>
+    <a href="/ne-znaete-nomer-zakaza/">Не знаете номер заказа?</a>
+    <br>
+    <br>
+{% endif %}
+
+{% endblock %}

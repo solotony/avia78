@@ -1,0 +1,50 @@
+{% extends "website/layout/internal.html" %}
+
+{% block title %}Правление СНТ Восход фрунзенского района{% endblock %}
+{% block description %}Правление СНТ Восход фрунзенского района{% endblock %}
+
+{% block content %}
+    <section class="well-sm-2 ">
+        <div class="container">
+            <h2 class="line-3">Правление</h2>
+            <p class="text-default-2 inset-1 letter-spacing-1">СНТ Восход фрунзенского района</p>
+        </div>
+        <div class="container clear clearfix content">
+
+            <h3 class="h3">Должностные лица</h3>
+            <ul>
+                {% for person in staff %}
+                <li>
+                    <strong>{{ person.position }}</strong> {{ person.name }}
+                    {% if person.phone %}  <a href="{{person.get_phone_url}}">{{ person.phone }}</a> {%  endif %}
+                </li>
+                {% endfor %}
+            </ul>
+
+            <h3 class="h3">Члены правления</h3>
+            <ul>
+                {% for person in pravlenie %}
+                <li>
+                    <strong>{{ person.position }}</strong> {{ person.name }}
+                    {% if person.phone %}  <a href="{{person.get_phone_url}}">{{ person.phone }}</a> {%  endif %}
+                </li>
+                {% endfor %}
+            </ul>
+
+            <h3 class="h3">Ревизионная комиссия</h3>
+            <ul>
+                {% for person in revizory %}
+                <li>
+                    <strong>{{ person.position }}</strong> {{ person.name }}
+                    {% if person.phone %}  <a href="{{person.get_phone_url}}">{{ person.phone }}</a> {%  endif %}
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </section>
+
+{% endblock %}
+
+
+

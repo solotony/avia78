@@ -1,0 +1,26 @@
+{% extends "website/layout/public.html" %}
+{% block title %}{{ page.get_title }}{% endblock %}
+{% block description %}{{ page.get_descriptopn }}{% endblock %}
+{% block canonical %}{{ page.get_url }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ page.get_header }}</h1>
+{%comment%}
+url:<br> {{ page.get_url }}<hr>
+title:<br> {{ page.get_title }}<hr>
+descriptopn:<br> {{ page.get_descriptopn }}<hr>
+header:<br> {{ page.get_header }}<hr>
+content:<br> {{ page.content | safe }}<hr>
+{%endcomment%}
+{{ page.content | safe }}
+
+{% if page.show_childs %}
+    дочерние страницы:<br>
+    {% for child in page.children.all %}
+        <a href="{{ child.get_url }}">{{ child.get_anchor_full }}</a><br>
+    {% endfor %}
+    <hr>
+{% endif %}
+
+{% endblock %}

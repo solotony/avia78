@@ -1,0 +1,33 @@
+<form class='rd-mailform rd-mailform-1' method="post" action="{% url 'subscribe' %}" data-form-output='form-output-global'>
+    <div class="form-wrap">
+        <label class="form-label" for="subscribe-name">
+            Ваше имя
+        </label>
+        <input type="text"
+               name="name"
+               class="form-input"
+               id="subscribe-name"
+               data-constraints="@Required"/>
+    </div>
+
+    <div class="form-wrap">
+        <label class="form-label" for="subscribe-email">
+            E-Mail
+        </label>
+        <input type="text"
+               name="email"
+               class="form-input"
+               id="subscribe-email"
+               data-constraints="@Required @Email"/>
+    </div>
+
+    <!-- END RD Mailform Type -->
+    <fieldset>
+
+        <div class="mfControls text-center">
+            <button class="btn btn-md" type="submit">Subscribe</button>
+        </div>
+
+        <div class="mfInfo"></div>
+    </fieldset>
+</form>

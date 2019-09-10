@@ -1,0 +1,12 @@
+{% extends "website/layout/public.html" %}
+{% load crispy_forms_filters %}
+{% block title %}Регистрация на сайте{% endblock %}
+{% block content %}
+<h1>Регистрация на сайте</h1>
+
+<form method="post">{% csrf_token %}
+{{ form | crispy }}
+<button class="btn btn-primary">Зарегистрироваться</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+<h1>Личный кабинет</h1>
+<div class="row">
+    <div class="col-md-6">
+<h2>Ваши заказы</h2>
+{% if orders %}
+        <table class="table table-bordered profile-table table-hover table-striped">
+         {% for order in orders %}
+            <tr><td><a href="{{ order.getUrl }}">{{ order }} ({{ order.countryFrom }} - {{ order.countryTo }})</a></td></tr>
+        {% endfor %}
+        </table>
+<p><a href="{% url 'orders.cabinet_index' %}">все заказы</a></p>
+        {% else %}
+        <p>У Вас пока нет заказов</p>
+        {% endif %}
+<p><a href="{% url 'orders.cabinet_create' %}">новый заказ</a></p>
+
+<h2>Ваши грузы</h2>
+{% if cargos %}
+    <table class="table table-bordered profile-table table-hover table-striped">
+         {% for cargo in cargos %}
+        <tr><td><a href="{{ cargo.getUrl }}">{{ cargo }} (заказ №{{ cargo.order.id }})</a></td></tr>
+        {% endfor %}
+        </table>
+
+<p><a href="{% url 'orders.cabinet_cargo_index' %}">все грузы</a></p>
+        {% else %}
+        <p>У Вас пока нет грузов</p>
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+<h2>Сообщения</h2>
+{% if messages %}
+    <table class="table table-bordered profile-table table-hover table-striped">
+         {% for message in messages %}
+            <tr><td>{{ message }}</td></tr>
+        {% endfor %}
+        </table>
+
+<p><a href="{% url 'messages.cabinet_index' %}">все сообщения</a></p>
+        {% else %}
+        <p>У Вас пока нет сообщений</p>
+        {% endif %}
+<p><a href="{% url 'messages.cabinet_create' %}">новое сообщение</a></p>
+
+<h2>Профайл</h2>
+
+<p><a href="{% url 'user.profile' %}">ваш профайл</a></p>
+
+<h2>Выход</h2>
+
+<p><a href="{% url 'logout' %}">выход</a></p>
+    </div>
+</div>
+
+{% endblock %}

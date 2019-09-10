@@ -1,0 +1,46 @@
+<!doctype html>
+{% load staticfiles %}
+{% load copyright_tags %}
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'common/css/style.css' %}">
+
+    <!-- Useful meta tags -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="index, follow, noodp">
+    <meta name="googlebot" content="index, follow">
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Favicons for all devices -->
+    <link rel="icon" type="image/png" href="{% static 'common/i/favicons/favicon256.png' %}?v=2.0001" >
+    <link rel="manifest" href="{% static 'common/i/favicons/manifest.json' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+</section>
+<ul>
+    <li><a href="{% url 'website.front_page' %}">Главная</a></li>
+    <li><a href="{% url 'website.contacts_page' %}">Контакты</a></li>
+    <li><a href="{% url 'website.about_page' %}">О нас</a></li>
+    <li><a href="{% url 'person_list' %}">Персонал</a></li>
+    <li><a href="{% url 'post_list' %}">Новости</a></li>
+    <li><a href="{% url 'sitemap_page' %}">Карта сайта</a></li>
+</ul>
+</section>
+
+<section>
+    {% block content %}{% endblock %}
+</section>
+
+</body>
+
+</html>

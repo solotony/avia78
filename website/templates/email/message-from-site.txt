@@ -1,0 +1,8 @@
+С сайта отправлено сообщение
+
+E-mail: {{ msg.email }}
+Телефон: {{ msg.phone }}
+Имя: {{ msg.name }}
+
+{{ msg.text }}
+

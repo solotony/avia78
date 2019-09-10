@@ -1,0 +1,26 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Информация о заказе{% endblock %}
+{% block content %}
+<h1>{{ order  }}</h1>
+
+<h2>Параметры заказа</h2>
+<dl>
+    <dt>Отправление: </dt><dd>{{ order.country_from }} {{ order.addressFrom }}</dd>
+    <dt>Назначение:</dt><dd>{{ order.country_to }} {{ order.addressTo }}</dd>
+    <dt>Характер груза:</dt><dd>{% if order.type %}{{ order.type }}{% else %}Не указан{% endif %}</dd>
+
+    <dt>Вес груза:</dt><dd>{% if order.weight %}{{ order.weight }} кг{% else %}Не указан{% endif %}</dd>
+    <dt>Объем груза:</dt><dd>{% if order.volume %}{{ order.volume }} м<sup>3</sup>{% else %}Не указан{% endif %}</dd>
+    <dt>Объявленная стоимость груза:</dt><dd>{% if order.value %}{{ order.value }} ${% else %}Не рассчитана{% endif %}</dd>
+    <dt>{% if order.customs_needed %}Требуется растамаживание{% else %}Растамаживание не требуется{% endif %}</dt>
+    <dt>Подробности</dt><dd>{% if order.description %}{{ order.description }}{% else %}Нет{% endif %}</dd>
+</dl>
+
+<h2>Обработка заказа</h2>
+{% if price %}
+<dl>
+    <dt>Стоимость услуг по перевозке {% if order.price_include_customs %} (с учетом таможенных платежей){% endif %}:</dt><dd>{{ price }}$</dd>
+</dl>
+{% endif %}
+
+{% endblock %}

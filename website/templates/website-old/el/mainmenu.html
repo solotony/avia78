@@ -1,0 +1,88 @@
+{% load cache %}
+
+<div class="rd-navbar-inner">
+    <!-- RD Navbar Panel -->
+    <div class="rd-navbar-panel">
+        <!-- RD Navbar Toggle -->
+        <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar"><span></span></button>
+        <!-- END RD Navbar Toggle -->
+        <!-- RD Navbar Brand -->
+        <div class="rd-navbar-brand">
+            <a href="/" class="brand-name primary-color">
+                <span class="text-light">Садоводство «Восход»</span>
+                <span class="text-ubold brand-slogan">Фрунзенского района</span>
+            </a>
+        </div>
+        <!-- END RD Navbar Brand -->
+    </div>
+    <!-- END RD Navbar Panel -->
+    <div class="rd-navbar-nav-wrap">
+        <!-- RD Navbar Search -->
+        {% comment %}<div class="rd-navbar-search">
+            <form class="rd-search rd-navbar-search-form" action="search-results.html" method="GET">
+                <label class="rd-search rd-navbar-search-form-input">
+                    <input type="text" name="s" placeholder="Search.." autocomplete="off"/>
+                </label>
+                <button class="rd-search rd-navbar-search-form-submit" type="submit"></button>
+            </form>
+
+            <button class="rd-navbar-search-toggle" data-rd-navbar-toggle=".rd-navbar-search">
+                <span class="line-2 pull-left offset-1"></span>
+                <span class="line-2 pull-right offset-2"></span>
+            </button>
+        </div>{% endcomment %}
+        <!-- END RD Navbar Search -->
+        <!-- RD Navbar Nav -->
+
+        <ul class="rd-navbar-nav">
+            {% for menuitem in website_mainmenu %}
+                <li class=""><a href="{{ menuitem.get_url }}">{{ menuitem.get_text }}</a>
+                {%  if menuitem.get_childs %}
+                    <ul class="rd-navbar-dropdown">
+                    {% for subitem in menuitem.get_childs.all %}
+                        <li class=""><a href="{{ subitem.get_url }}">{{ subitem.get_text }}</a></li>
+                    {% endfor %}
+                    </ul></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    {% comment %}
+        <ul class="rd-navbar-nav">
+            <li class="line-1 active"><a href="/">Главная</a></li>
+            <li><a href="/page1/">Документы</a>
+                <ul class="rd-navbar-dropdown">
+                    <li>
+                        <a href="/page6/">Testimonials</a>
+                    </li>
+                    <li>
+                        <a href="#">Properties</a>
+                        <ul class="rd-navbar-dropdown">
+                            <li>
+                                <a href='#'>All</a>
+                            </li>
+                            <li>
+                                <a href='#'>USA</a>
+                            </li>
+                            <li>
+                                <a href='#'>Canada</a>
+                            </li>
+                            <li>
+                                <a href='#'>Mexico</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">News</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="/page2/">Полезное</a></li>
+            <li><a href="/page3/">Фотографии</a></li>
+            <li><a href="/page4/">Новости</a></li>
+            <li><a href="/page5/">Контакты</a></li>
+        </ul>
+        <!-- END RD Navbar Nav -->
+    {% endcomment %}
+    </div>
+</div>

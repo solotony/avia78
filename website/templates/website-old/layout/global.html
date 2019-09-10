@@ -1,0 +1,73 @@
+<!DOCTYPE html>{% load staticfiles %}
+<html lang="ru" class="wide wow-animation">
+<head>
+    <!-- Site Title -->
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+    <!-- Stylesheets -->
+    <link rel="icon" href="{% static 'website/images/favicon.ico' %}" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+
+    <!--[if lt IE 10]>
+    <script src="{% static 'website/js/html5shiv.min.js' %}"></script>
+    <![endif]-->
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style><style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+</head>
+<body>
+<div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="{% static 'website/images/ie8-panel/warning_bar_0000_us.jpg' %}" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+<!-- The Main Wrapper -->
+<div class="page">
+
+    {% block layouted_content %}{% endblock %}
+
+    <!--========================================================
+                              FOOTER
+    ==========================================================-->
+    <footer class="page-footer">
+        <div class="container">
+            <ul class="inline-list row text-center">
+                {% if website_settings.facebook %}<li class="col-sm-2"><a class="icon-xs fa-facebook" href="{{ website_settings.facebook }}"></a></li>{% endif %}
+                {% if website_settings.instagram %}<li class="col-sm-2"><a class="icon-xs fa-instagram" href="{{ website_settings.instagram }}"></a></li>{% endif %}
+                {% if website_settings.twitter %}<li class="col-sm-2"><a class="icon-xs fa-twitter" href="{{ website_settings.twitter }}"></a></li>{% endif %}
+                {% if website_settings.vk %}<li class="col-sm-2"><a class="icon-xs fa-vk" href="{{ website_settings.vk }}"></a></li>{% endif %}
+                {% if website_settings.odnoklassniki %}<li class="col-sm-2"><a class="icon-xs fa-odnoklassniki" href="{{ website_settings.odnoklassniki  }}"></a></li>{% endif %}
+            </ul>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="text-center">
+                    <!-- RD Navbar Brand -->
+                    <div class="rd-navbar-brand">
+                        <a href="/" class="brand-name primary-color">
+                            <span class="text-light">Садоводство «Восход»</span>
+                            <span class="text-ubold brand-slogan">Фрунзенского района</span>
+                        </a>
+                    </div>
+                    <!-- END RD Navbar Brand -->
+                    <div class="copyright">
+                        Copyright &#169; <span class="copyright-year"></span> |
+                        <a href="{% url 'website.contacts' %}">Контакты</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<div class="snackbars" id="form-output-global"></div>
+<!-- Core Scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="{% static 'website/js/core.min.js' %}"></script>
+<!-- Additional Functionality Scripts -->
+<script src="{% static 'website/js/script.js' %}"></script>
+</body>
+</html>

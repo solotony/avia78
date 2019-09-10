@@ -1,0 +1,9 @@
+{% extends "website/layout/public.html" %}
+{% load crispy_forms_filters %}
+{% block title %}Ваш профиль{% endblock %}
+{% block content %}
+<h1>Ваш профиль</h1>
+
+{{ form | crispy }}
+
+{% endblock %}

@@ -1,0 +1,10 @@
+Регистрация пользователя на сайте
+
+Заказчик: {% if user.first_name %}{{ user.first_name }}{% endif %} {% if user.last_name %}{{ user.last_name }}{% endif %}
+{% if user.email %}E-mail: {{ user.email }}{% endif %}
+{% if user.phone %}Телефон: {{ user.phone }}{% endif %}
+{% if user.address %}Адрес: {{ user.address }}{% endif %}
+{% if user.is_org %}
+Организация: {{ user.org_name }}
+ИНН: {{ user.org_inn }}
+{% endif %}

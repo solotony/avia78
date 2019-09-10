@@ -1,0 +1,3 @@
+User-agent: *
+Host: avia78.ru
+Sitemap: http://avia78.ru/sitemap.xml

@@ -1,0 +1,61 @@
+{% extends "website/layout/internal.html" %}
+
+{% block title %}Расписание работы правления СНТ Восход фрунзенского района{% endblock %}
+{% block description %}Расписание работы правления СНТ Восход фрунзенского района{% endblock %}
+
+{% block content %}
+    <section class="well-sm-2 ">
+        <div class="container">
+            <h2 class="line-3">Расписание работы правления</h2>
+            <p class="text-default-2 inset-1 letter-spacing-1">СНТ Восход фрунзенского района</p>
+        </div>
+        <div class="container clear clearfix content">
+
+            <table class="table">
+                {% for person in staff %}
+                <tr>
+                    <td rowspan="{{ person.schedule.count }}">
+                        {{ person.position }}
+                    </td>
+                    <td rowspan="{{ person.schedule.count }}">
+                        {{ person.name }}
+                    </td>
+                    <td rowspan="{{ person.schedule.count }}">
+                        {% if person.phone %}  <a href="{{person.get_phone_url}}">{{ person.phone }}</a> {%  endif %}
+                    </td>
+                    {% for schedule in person.schedule.all %}
+                        {% if forloop.first %}
+                            <td>
+                                {{ schedule.comment }}
+                            </td>
+                            <td>
+                                {{ schedule.get_days }}
+                            </td>
+                            <td>
+                                {{ schedule.time }}
+                            </td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                    {% for schedule in person.schedule.all %}
+                        {% if not forloop.first %}
+                            <td>
+                                {{ schedule.comment }}
+                            </td>
+                            <td>
+                                {{ schedule.get_days }}
+                            </td>
+                            <td>
+                                {{ schedule.time }}
+                            </td>
+                        {%  endif %}
+                    {% endfor %}
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+
+{% endblock %}
+
+
+

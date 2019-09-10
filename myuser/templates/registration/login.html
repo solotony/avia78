@@ -1,0 +1,42 @@
+{% extends "website/layout/public.html" %}
+{% load crispy_forms_filters %}
+{% block title %}Вход на сайт{% endblock %}
+{% block content %}
+
+<h1>Вход</h1>
+
+{% if form.errors %}
+    <p>Логин и пароль не совпадают</p>
+{% endif %}
+
+<p>
+    Если у вас еще нет логина, пожалуйста <a href="{% url 'user.register' %} ">зарегистрируйтесь</a>
+</p>
+
+<div class="bx-authform">
+    <form method="post" action="{% url 'login' %}" class="post-form">{% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+
+    <div class="form-group row">
+        {#<div class="col-md-1"><label for="username">Логин:</label></div>#} <div class="col-md-4">{{ form.username | as_crispy_field }}</div>
+    </div>
+        <div class="form-group row">
+            {#<div class="col-md-1"><label for="password">Пароль:</label></div>#}<div class="col-md-4">{{ form.password | as_crispy_field }}</div>
+        </div>
+
+
+        <div class="form-group">
+          <button class="btn btn-md btn-warning" type="submit">Вход</button>
+        </div>
+
+    </form>
+</div>
+
+<p>
+  <a href="">Забыли Пароль ?</a>
+</p>
+
+
+{% endblock %}
+
+{# {% url 'password_reset' %} #}

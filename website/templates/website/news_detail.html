@@ -1,0 +1,21 @@
+{% extends "website/layout/public.html" %}
+{% block title %}{{ post.get_title }}{% endblock %}
+{% block description %}{{ post.get_description }}{% endblock %}
+{% block canonical %}{{ post.get_canonical }}{% endblock %}
+
+{% block content %}
+
+    <h1>{{ post.get_header }}</h1>
+{%comment%}
+    <hr>
+    meta-canonical<br> {{ post.get_canonical }} <hr>
+    meta-title<br> {{ post.get_title }} <hr>
+    meta-description<br> {{ post.get_description }} <hr>
+    дата<br> {{ post.published_at | date:'d.m.Y' }} <hr>
+    заголовок<br> {{ post.get_header }} <hr>
+    абстракт<br> {{ post.get_abstract }} <hr>
+    содержание<br> {{ post.content }} <hr>
+{%endcomment%}
+<i>{{ post.published_at | date:'d.m.Y' }}</i><hr>
+{{ post.content | safe | linebreaks }}
+{% endblock %}

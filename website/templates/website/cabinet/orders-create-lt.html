@@ -1,0 +1,13 @@
+{% extends "website/layout/public.html" %}
+{% load crispy_forms_filters %}
+{% block title %}Расчет стоимости перевозки{% endblock %}
+{% block content %}
+
+    <h1>Расчет стоимости перевозки</h1>
+
+    <form method="post">{% csrf_token %}
+    {{ form | crispy }}
+    <button class="btn btn-warning">Выслать заявку на расчет</button>
+    </form>
+
+{% endblock %}

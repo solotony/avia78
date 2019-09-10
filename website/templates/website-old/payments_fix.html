@@ -1,0 +1,29 @@
+{% extends "website/layout/internal.html" %}{% load staticfiles %}
+{% block title %} Ввод показаний счетчиков {% endblock %}
+{% block description %}{% endblock %}
+{% block content %}
+    <!-- Contacts -->
+    <section class="well-sm-2">
+        <div class="container" data-lightbox="gallery">
+            <h2 class="line-3">Ввод показаний</h2>
+            <p class="text-default-2 inset-1 letter-spacing-1">счетчиков электричества и воды</p>
+            <div class="row justify-content-lg-between">
+                <div class="col-12 address text-center text-md-left">
+
+                    <form method="post" action="#"> {% csrf_token %}
+
+                        {{ form.as_p }}
+
+                        <div class="mfControls text-center">
+                            <button class="btn btn-md btn-primary" type="submit">Отправить показания</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Contact us -->
+{% endblock %}
+

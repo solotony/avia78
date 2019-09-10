@@ -1,0 +1,32 @@
+{% extends "website/layout/public.html" %}
+{% load crispy_forms_filters %}
+{% block title %}Результаты поиска{% endblock %}
+{% block content %}
+<h1>Вопрос-ответ</h1>
+    <br>
+    <form  style="max-width:500px;" action="{%  url 'news.search' %}" method="get">
+        <div class="input-group">
+          <input type="text" class="form-control" name="q" value="{{ query_string }}" placeholder="Введите вопрос">
+            <div class="input-group-append text-center">
+                <button type="submit" class="btn btn-warning text-center"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <br>
+    {% for post in posts %}
+        <i>{{ post.published_at }}</i>
+        <br>
+        <strong>{{  post.get_title }}</strong><br>
+        {{ post.content | striptags | linebreaksbr }}
+        <br>
+        <br>
+    {% endfor %}
+
+    <h2>Не нашли ответа ?</h2>
+
+    <a href="/message/query/">Задайте свой вопрос нашим менеджерам и получите ответ в течении часа.</a>
+
+
+{% endblock %}
+

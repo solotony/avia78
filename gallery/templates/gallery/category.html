@@ -1,0 +1,51 @@
+{% extends "website/layout/internal.html" %}{% load staticfiles %}
+
+{% block title %}{{ category.get_title }}{% endblock %}
+{% block description %}{{ category.get_description }}{% endblock %}
+{% block content %}
+
+    <section class="well-sm-2">
+        <div class="container" data-lightgalley="group">
+            <h2 class="line-3">Фотогаллерея</h2>
+            <p class="text-default-2 inset-1 letter-spacing-1">{{ category.get_description }}</p>
+            <div class="row row-30">
+                {% for  photo in images_all %}
+                    <div class="col-md-4 col-lg-4 ">
+                        <div class="thumb thumb1">
+                            <a href="{{ photo.image_full_url }}" data-lightgallery='item'>
+                                <img src="{{ photo.image_thumb_url }}" width="370" height="370" alt="{{ photo.name }}"/>
+                                <div class="thumb__overlay"></div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="container" data-lightgalley="group">
+            <!-- Pagination-->
+            <nav aria-label="Навигация по страницам">
+                <ul class="pagination justify-content-center">
+                    {% if images_all.has_previous %}
+                        <li class="page-item"><a href="?page=1" class="page-link" >&lt;&lt;&lt;</a></li>
+                        <li class="page-item"><a href="?page={{ images_all.previous_page_number }}" class="page-link" >{{ images_all.previous_page_number }}</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><a class="page-link"  tabindex="-1">&lt;&lt;&lt;</a></li>
+                    {% endif %}
+                        <li class="page-item disabled "><a class="page-link" tabindex="-1"><strong>{{ images_all.number }}</strong></a></li>
+                    {% if images_all.has_next %}
+                        <li class="page-item"><a href="?page={{ images_all.next_page_number }}" class="page-link">{{ images_all.next_page_number }}</a></li>
+                        <li class="page-item"><a href="?page={{ images_all.paginator.num_pages }}" class="page-link">&gt;&gt;&gt;</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><a class="page-link"  tabindex="-1">&gt;&gt;&gt;</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+
+    </section>
+
+{% endblock %}
+

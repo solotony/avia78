@@ -1,0 +1,29 @@
+{% if x.has_next %}
+<div class="pagination">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item step-links">
+            {% if x.has_previous %}
+                {%  if x.number|add:"-4" > 0 %} <a  class="page-link" href="?{{p}}=1 }}"> &laquo;&laquo; </a> {%endif %}
+                {#  { %  if x.number|add:"-4" > 0 %} <a  class="page-link" href="?{{p}}=1 }}">1</a> {%endif % }  #}
+                {%  if x.number|add:"-3" > 0 %} <a  class="page-link" href="?{{p}}={{ x.number|add:"-3" }}">{{ x.number|add:"-3" }}</a> {%endif %}
+                {%  if x.number|add:"-2" > 0 %} <a  class="page-link" href="?{{p}}={{ x.number|add:"-2" }}">{{ x.number|add:"-2" }}</a> {%endif %}
+                <a  class="page-link" href="?{{p}}={{ x.previous_page_number }}">{{ x.number|add:"-1" }}</a>
+            {% endif %}
+        </li>
+         <li class="page-item active">
+             <a class="page-link" href="#">{{ x.number }}</a>
+        </li>
+        <li class="page-item step-links">
+        {% if x.has_next %}
+            <a class="page-link" href="?{{p}}={{ x.next_page_number }}">{{ x.number|add:"1" }}</a>
+            {%  if x.number|add:"2" <= x.paginator.num_pages %} <a  class="page-link" href="?{{p}}={{ x.number|add:"2" }}">{{ x.number|add:"2" }}</a> {%endif %}
+            {%  if x.number|add:"3" <= x.paginator.num_pages %} <a  class="page-link" href="?{{p}}={{ x.number|add:"3" }}">{{ x.number|add:"3" }}</a> {%endif %}
+            {#   { %  if x.number|add:"4" <= x.paginator.num_pages %} <a  class="page-link" href="?{{p}}={{ x.paginator.num_pages }}">{{ x.paginator.num_pages }}</a> {%endif %} #}
+            {%  if x.number|add:"4" <= x.paginator.num_pages %} <a  class="page-link" href="?{{p}}={{ x.paginator.num_pages }}">&raquo;&raquo;</a> {%endif %}
+        {% endif %}
+          </li>
+      </ul>
+    </nav>
+</div>
+{% endif %}

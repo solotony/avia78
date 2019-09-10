@@ -1,0 +1,26 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Информация о грузе{% endblock %}
+{% block content %}
+<h1>Груз {{ cargo.code }}</h1>
+
+<ul>
+{% for status in cargo.cargo_statuses.all %}
+    <li>{{ status }}</li>
+{% endfor %}
+</ul>
+
+
+<h2>Параметры заказа</h2>
+<dl>
+    <dt>Отправление: </dt><dd>{{ cargo.order.country_from }} {{ cargo.order.addressFrom }}</dd>
+    <dt>Назначение:</dt><dd>{{ cargo.order.country_to }} {{ cargo.order.addressTo }}</dd>
+    <dt>Характер груза:</dt><dd>{% if cargo.order.type %}{{ cargo.order.type }}{% else %}Не указан{% endif %}</dd>
+
+    <dt>Вес груза:</dt><dd>{% if cargo.order.weight %}{{ cargo.order.weight }} кг{% else %}Не указан{% endif %}</dd>
+    <dt>Объем груза:</dt><dd>{% if cargo.order.volume %}{{ cargo.order.volume }} м<sup>3</sup>{% else %}Не указан{% endif %}</dd>
+    <dt>Объявленная стоимость груза:</dt><dd>{% if cargo.order.value %}{{ cargo.order.value }} ${% else %}Не рассчитана{% endif %}</dd>
+    <dt>{% if cargo.order.customs_needed %}Требуется растамаживание{% else %}Растамаживание не требуется{% endif %}</dt>
+    <dt>Подробности</dt><dd>{% if cargo.order.description %}{{ cargo.order.description }}{% else %}Нет{% endif %}</dd>
+</dl>
+
+{% endblock %}

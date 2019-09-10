@@ -1,0 +1,20 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Список вопросов-ответов за год{% endblock %}
+{% block content %}
+<h1>Список вопросов-ответов за {{ year }} год</h1>
+
+{% for post in posts %}
+    <a href="{{ post.get_url_html }}">{{ post.get_header }}</a><br>
+{% endfor %}
+
+
+<h1>Дайджесты по месяцам</h1>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+{% for month in monthes %}
+      <li class="page-item"><a class="page-link" href="{% url 'news.digest_month' year month.month.month %}">{{ month.month.month }}</a></li>
+{% endfor %}
+  </ul>
+</nav>
+
+{% endblock %}

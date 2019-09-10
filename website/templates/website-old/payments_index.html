@@ -1,0 +1,55 @@
+{% extends "website/layout/internal.html" %}{% load staticfiles %}
+{% block title %} Информация о платежах {% endblock %}
+{% block description %}{% endblock %}
+{% block content %}
+    <!-- Contacts -->
+    <section class="well-sm-2">
+        <div class="container" data-lightbox="gallery">
+            <h2 class="line-3">Платежи</h2>
+            <p class="text-default-2 inset-1 letter-spacing-1">показания, счета, платежи</p>
+            <div class="row justify-content-lg-between">
+                <div class="col-12 address text-center text-md-left">
+
+                  {% if mds.count %}
+                    <h3>Показания счетчиков</h3>
+                    <table class="table">
+                    <tr><th>Дата</th><th>Тариф 1</th><th>Тариф 2</th><th>Вода</th></tr>
+                    {% for md in mds %}
+                      <tr><td>{{ md.date }}</td><td>{{ md.electrT1 }}</td><td>{{ md.electrT2 }}</td><td>{{ md.water }}</td></tr>
+                    {% endfor %}
+                    </table>
+                  {% endif %}
+
+                  <p>
+                    <a href="{% url 'payments.fix' %} " style="text-decoration: underline; color:#007bff">Внести показания</a>
+                  </p>
+                <br><br>
+
+                  {% if bills.count %}
+                    <h3>Счета к оплате</h3>
+                    <table class="table">
+                    <tr><th>Дата</th><th>Сумма</th><th>Назначение платежа</th></tr>
+                    {% for bill in bills %}
+                      <tr><td>{{ bill.date }}</td><td>{{ bill.summ }}</td><td>{{ bill.details }}</td></tr>
+                    {% endfor %}
+                    </table>
+                  {% endif %}
+
+                {% if payments.count %}
+                    <h3>Платежи</h3>
+                    <table class="table">
+                    <tr><th>Дата</th><th>Сумма</th><th>Назначение платежа</th></tr>
+                    {% for payment in payments %}
+                      <tr><td>{{ payment.date }}</td><td>{{ payment.summ }}</td><td>{{ payment.details }}</td></tr>
+                    {% endfor %}
+                    </table>
+                  {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Contact us -->
+{% endblock %}
+

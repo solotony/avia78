@@ -1,0 +1,27 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Ваши грузы{% endblock %}
+{% block content %}
+<h1>Ваши грузы</h1>
+{% if cargos %}
+{% else %}
+<p>У Вас пока нет грузов.</p>
+{% endif  %}
+
+{% if cargos %}
+<table class="table table-bordered table-active">
+{% for cargo in cargos %}
+    <tr>
+        <td>{{ cargo.code }}</td>
+        <td>{{ cargo.title }}</td>
+        <td><strong>{{ cargo.order.country_from }}</strong><br><span class="small">{{ cargo.order.addressFrom }}</span></td>
+        <td><strong>{{ cargo.order.country_to }}</strong><br><span class="small">{{ cargo.order.addressTo }}</span></td>
+        <td><a href="{{ cargo.getUrl }}">подробнее</a></td>
+    </tr>
+{% endfor %}
+</table>
+
+{%  include 'website/el/paginator.html' with x=cargos p='p'  %}
+
+{% endif  %}
+
+{% endblock %}

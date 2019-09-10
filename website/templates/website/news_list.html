@@ -1,0 +1,26 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Новости{% endblock %}
+{% block content %}
+<h1>Вопросы-ответы</h1>
+
+{% for post in posts %}
+    <a href="{{ post.get_url_html }}">{{ post.get_header }}</a><br>
+{%comment%}
+    новый адрес {{ post.get_url }}<br>
+    старый адрес {{ post.get_url_html }}<br>
+    <hr>
+    пагинацию потом притащу
+    <hr>
+{%endcomment%}
+{% endfor %}
+
+<h1>Дайджесты по годам</h1>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+{% for year in years %}
+      <li class="page-item"><a class="page-link" href="{% url 'news.digest_year' year.year.year %}">{{ year.year.year }}</a></li>
+{% endfor %}
+  </ul>
+</nav>
+
+{% endblock %}

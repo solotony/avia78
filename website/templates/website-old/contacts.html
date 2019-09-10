@@ -1,0 +1,86 @@
+{% extends "website/layout/internal.html" %}{% load staticfiles %}
+{% block title %}Садоводство "Восход" Фрунзенского района {% endblock %}
+{% block description %}{% endblock %}
+{% block content %}
+    <!-- Contacts -->
+    <section class="well-sm-2">
+        <div class="container" data-lightbox="gallery">
+            <h2 class="line-3">СНТ Восход</h2>
+            <p class="text-default-2 inset-1 letter-spacing-1">Фрунзенского района</p>
+            <div class="row justify-content-lg-between">
+                <div class="col-xl-4 col-lg-5 address text-center text-md-left">
+                    <h2 class="text-primary">Контакты</h2>
+                    <div class="row offset-20">
+                        <div class="col-lg-7 ">
+                            <dl class="contact_list">
+                                <dt>Адрес:</dt>
+                                <dd>
+                                    <div class="box">
+                                        <div class="aside">
+                                            <span class="fa fa-home"></span>
+                                        </div>
+                                        <div class="cnt cnt1">
+                                            <p><a href="#map">{{ website_settings.address }}</a></p>
+                                        </div>
+                                    </div>
+                                </dd>
+                                <dt>Правление :</dt>
+                                <dd>
+                                    <div class="box">
+                                        <div class="aside">
+                                            <span class="fa  fa-phone"></span>
+                                        </div>
+                                        <div class="cnt">
+                                            <a href="{{ website_settings.get_phone1_url }}">{{ website_settings.phone1 }}</a>
+                                        </div>
+                                    </div>
+                                </dd>
+                                {% if website_settings.phone2 %}
+                                <dt>Бухгалтерия :</dt>
+                                <dd>
+                                    <div class="box">
+                                        <div class="aside">
+                                            <span class="fa fa-phone"></span>
+                                        </div>
+                                        <div class="cnt">
+                                            <a href="{{ website_settings.get_phone2_url }}">{{ website_settings.phone2 }}</a>
+                                        </div>
+                                    </div>
+                                </dd>
+                                {% endif %}
+                                <dt>E-mail:</dt>
+                                <dd>
+                                    <div class="box">
+                                        <div class="aside">
+                                            <span class="fa fa-envelope"></span>
+                                        </div>
+                                        <div class="cnt">
+                                            <a href="{{ website_settings.get_email_url }}">{{ website_settings.email }}</a>
+                                        </div>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+
+                    <form method="post" action="#"> {% csrf_token %}
+
+                        {{ form.as_p }}
+
+                        <div class="mfControls text-center">
+                            <button class="btn btn-md btn-primary" type="submit">Отправить</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Contact us -->
+
+    <a id="map"></a>
+    {% include 'website/sections/map.html' %}
+
+{% endblock %}

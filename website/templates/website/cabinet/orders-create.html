@@ -1,0 +1,13 @@
+{% extends "website/layout/public.html" %}
+{% load crispy_forms_filters %}
+{% block title %}Оформление заказа{% endblock %}
+{% block content %}
+
+    <h1>Оформление заказа</h1>
+
+    <form method="post">{% csrf_token %}
+    {{ form | crispy }}
+    <button class="btn btn-warning">Оформить заказ</button>
+    </form>
+
+{% endblock %}

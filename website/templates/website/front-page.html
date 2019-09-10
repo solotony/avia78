@@ -1,0 +1,163 @@
+{% extends "website/layout/public.html" %}
+{% block title %}{{ website_frontpage.title }}{% endblock %}
+{% block description %}{{ website_frontpage.description }}{% endblock %}
+{% block content %}
+</div>
+<div class="front_map">
+    <div class="container">
+        <div class="pt-4 squares-block-2">
+            <h4 class="float-left text-white">Заказать перевозку&nbsp;</h4>
+            <div class="clearfix"></div>
+            <a href="javascript:;" @click="frontTrby('AUTO')"  class="float-left map-square"><i class="fas fa-truck"></i></a>
+            <a href="javascript:;" @click="frontTrby('SEA')" class="float-left map-square"><i class="fas fa-ship"></i></a>
+            <a href="javascript:;" @click="frontTrby('AIR')" class="float-left map-square"><i class="fas fa-plane"></i></a>
+            <div class="clearfix"></div>
+        </div>
+        <div class="row">
+            <div class="col pt-4">
+                <h4 class="text-white">Сколько стоит?</h4>
+                <div class="card">
+                    <form action="{%  url 'orders.calculator' %}" method="post" id="front-calc-form">
+							  {% csrf_token %}
+                  <div class="card-header">
+                      <div class="row">
+                          <div class="col">
+                            <select name="countryFrom" @change="frontMiniCalc" id="front-mini-calc-from" class="select form-control">
+							</select>
+                          </div>
+                          <div class="col">
+                            <i class="fas fa-chevron-right arrow_icon"></i>
+                              <select name="countryTo" @change="frontMiniCalc" id="front-mini-calc-to" class="select form-control float-right">
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                        <div class="col calc-variant text-center">
+                            <p><b>Авиаперевозка</b><br><span id="air_block"><br></span></p>
+                            <br class="mobile-dop-br">
+                                <input type="hidden" name="addressFrom" value="Санкт-Петербург" maxlength="255">
+                                <input type="hidden" name="addressTo" value="Москва" maxlength="255">
+                                <input type="hidden" name="novalidate" value="1" >
+
+                        </div>
+                        <div class="col calc-variant text-center">
+                            <br class="mobile-dop-br-2">
+                            <p><b>Морская перевозка</b><br><span id="sea_block"><br></span></p>
+                            <!--form action="{%  url 'orders.calculator' %}" method="post">
+							  {% csrf_token %}
+                                <input type="hidden" name="addressFrom" value="Санкт-Петербург" maxlength="255">
+                                <input type="hidden" name="addressTo" value="Москва" maxlength="255">
+                                <input type="hidden" name="trby" value="AIR" id="form-trby">
+                                <input type="submit" class="btn btn-warning" @click="frontTrby2('SEA')" value="Рассчитать" />
+                            </form-->
+                        </div>
+                    </div>
+                      <div class="row">
+                          <div class="col calc-variant text-center">
+                                <input type="submit" class="btn btn-warning" value="Рассчитать" />
+                          </div>
+                      </div>
+                  </div>
+                    </form>
+                </div>
+                <br>
+                <h4 class="text-white">Где мой груз?</h4>
+                <div class="row where_my_order_block">
+                    <div class="col">
+                        <div class="input-group">
+                          <input @blur="where_my_order2==0?where_my_order=0:where_my_order=1" @click="where_my_order=1" type="text" class="form-control" id="front-order-search"  placeholder="Номер заказа">
+                            <div class="input-group-append text-center">
+                            <a href="javascript:;"  @click="frontOrderSearch" class="btn btn-warning text-center"><i class="fas fa-search"></i></a>
+                          </div>
+                        </div>
+		                <div @mouseout="where_my_order2=0;" @click="where_my_order2=1" tabindex="0" class="popup-window" style="display:none;" v-show="where_my_order">
+						  <span @mousemove="where_my_order2=1" class="for_example">Например, <a href="/order/cargo/STA-1CL5Y-257R9/">STA-1CL5Y-257R9</a> или <a href="/order/cargo/STA-4JPTC-132X5/">STA-4JPTC-132X5</a></span>
+						</div>
+                    </div>
+                    <div class="col no-number-link d-none d-lg-block">
+                        <a href="/ne-znaete-nomer-zakaza/">Не знаете номер заказа?</a>
+                    </div>
+               </div>
+                <br class="d-sm-block">
+            </div>
+            <div class="col pt-4 squares-block text-right">
+                <h4 class="float-right text-white">Заказать перевозку</h4>
+                <div class="clearfix"></div>
+                <form method="post" id="front-trby-form" action="{%  url 'orders.create' %}">
+                    {% csrf_token %}
+                    <input type="hidden" id="front-trby-value" name="trby" value="0">
+                    <input type="hidden"  name="novalidate" value="1">
+                </form>
+                <a href="javascript:;" @click="frontTrby('AUTO')"  class="float-right map-square"><i class="fas fa-truck"></i></a>
+                <a href="javascript:;" @click="frontTrby('SEA')" class="float-right map-square"><i class="fas fa-ship"></i></a>
+                <a href="javascript:;" @click="frontTrby('AIR')" class="float-right map-square"><i class="fas fa-plane"></i></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="content">
+        <div class="row">
+			<div class="col-md-4">
+                <div class="instructions_list_block">
+                  <ul>
+                      {% for text in website_frontpage.textonmain.all %}
+                          <li @click="instruction = {{ forloop.counter }}" v-bind:class="{ active: instruction == {{ forloop.counter }} }"><a href="#" @click.prevent=";">{{ text.name }}</a></li>
+                      {%  endfor  %}
+                  </ul>
+                </div>
+			</div>
+			<div class="col-md-8">
+                {% for text in website_frontpage.textonmain.all %}
+                    <div class="instruction_block" v-show="instruction=={{ forloop.counter }}">
+                        <h3>{{ text.name }}</h3> {{ text.text | safe }}
+                    </div>
+                {% endfor %}
+			</div>
+		</div>
+    </div>
+</div>
+<div class="blue_block">
+
+    <div class="container">
+        <div class="content spec_block">
+            <div class="row">
+                {% for serv in website_frontpage.advantages.all %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                        {% if not forloop.first %}</div>{% endif %}
+                        <div class="row">
+                    {% endif %}
+                    <div class="col-md-6 pb-5">
+                        <div class="float-left spec_img">
+                            <img src="{{ serv.iconimg_url }}">
+                        </div>
+                        <h5><a href="{{ serv.url }}">{{ serv.title }}</a></h5>
+                        <p>{{ serv.text }}</p>
+                    </div>
+                    {% if forloop.last %}</div>{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="content">
+        <h3>Нас рекомендуют</h3>
+
+        <vueper-slides fade  :touchable="false" :slide-ratio="0.3">
+            {% for testimonial in testimonials %}
+                <span class="slide-link" href="#">
+                    <vueper-slide :key="{{ forloop.counter }}" title='<h4>{{ testimonial.name }}</h4>{{ testimonial.text|truncatechars:300|force_escape }}<br><a href="{% url 'testimonials.show' testimonial.pk %}">посмотреть отзыв полностью</a>'>
+                    </vueper-slide>
+                </span>
+            {% endfor %}
+        </vueper-slides>
+    </div>
+</div>
+
+{% endblock %}

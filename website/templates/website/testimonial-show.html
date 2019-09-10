@@ -1,0 +1,15 @@
+{% extends "website/layout/public.html" %}
+{% block title %}{{ testimonial.name }}{% endblock %}
+{% block description %}{{ testimonial.name }}{% endblock %}
+{% block content %}
+<div>
+<img src="{{ testimonial.scan_url }}" style="float:left;padding-right:20px;">
+<h1>{{ testimonial.name }}</h1>
+<p>{{ testimonial.text }}</p>
+</div>
+<div style="clear:both"></div>
+
+
+{% endblock %}
+
+

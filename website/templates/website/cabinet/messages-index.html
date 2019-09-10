@@ -1,0 +1,35 @@
+{% extends "website/layout/public.html" %}
+{% block title %}Ваши сообщения{% endblock %}
+{% block content %}
+<h1>Ваши сообщения</h1>
+
+
+{% if msgs %}
+{% else %}
+<p>У Вас пока нет сообщений.</p>
+{% endif  %}
+
+        <p><a href="{% url 'messages.cabinet_create' %}">Написать новое сообщение</a></p>
+
+{% if msgs %}
+
+
+
+
+<table class="table table-bordered table-active">
+{% for message in msgs %}
+    <tr>
+
+        <td>{{ message.user }}</td>
+        <td>{{ message.created_at }}</td>
+        <td>{{ message.title }}</td>
+        <td>{{ message.text }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{%  include 'website/el/paginator.html' with x=msgs p='p'  %}
+
+{% endif  %}
+
+{% endblock %}

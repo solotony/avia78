@@ -1,0 +1,31 @@
+{% extends "website/layout/internal.html" %}{% load staticfiles %}
+
+{% block title %}Фотогаллереи{% endblock %}
+{% block description %}Фотогаллереи{% endblock %}
+{% block content %}
+
+  <section class="well-sm-2">
+      <div class="container" data-lightgalley="group">
+          <h2 class="line-3">Фотогаллереи</h2>
+          <p class="text-default-2 inset-1 letter-spacing-1">{{ category.get_description }}</p>
+          <div class="row row-30">
+              {% for  category in categories %}
+                  <div class="col-md-4 col-lg-4 ">
+                      <div class="thumb thumb1">
+                          <a href="{{ category.get_url }}" >
+                              <img src="{{ category.get_image.image_thumb_url }}" width="370" height="370" alt="{{ category.name }}"/>
+                              <div class="thumb__overlay"></div>
+                          </a>
+                      </div>
+                  </div>
+              {% endfor %}
+          </div>
+      </div>
+  </section>
+
+    <tr>
+        <th><a href="{{ category.get_url  }}">{{ category.name }}</a></th>
+    </tr>
+
+
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends "website/layout/front.html" %}{% load staticfiles %}
+{% block title %}Садоводство Восход Фрунзенского района{% endblock %}
+{% block description %}Официальный вебсайт Садоводства Восход Фрунзенского района{% endblock %}
+{% block content %}
+ <main class="page-content">
+    <!-- Welcome -->
+    <section class="well-xl">
+        <div class="container">
+            <div class="row row-60">
+                <div class="col-lg-8">
+                    <h2 class="line-3">{{ website_frontpage.helo_text }}</h2>
+                    <p class="text-default-2 inset-1 letter-spacing-1">{{ website_frontpage.subhelo_text }}</p>
+                    <div class="row row-30">
+                        <div class="col-lg-6">
+                            <p class="text-default-3">
+                                {{ website_frontpage.content_text_first | linebreaksbr }}
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="text-default-3">
+                                {{ website_frontpage.content_text_second | linebreaksbr }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h2 class="line-3">Фото</h2>
+                    <p class="text-default-2 inset-1 letter-spacing-1">Нам есть чем гордиться</p>
+                    <div class="owl-carousel owl-carousel-2"  data-nav="true" data-items="1">
+                        {% for photo in website_settings.get_photos %}
+                            <div class="owl-item">
+                                <img width="370" height="250" alt="" src="{{ photo.image_front_url }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Welcome -->
+    <!-- Swiper -->
+    <section class="bg-1">
+        <div class="swiper-container swiper-slider swiper-slider-1" data-height="498px" data-min-height="400px" data-autoplay="10000" >
+            <div class="swiper-wrapper">
+                {% for testimonial in website_frontpage.get_testimonials_all %}
+                <div class="swiper-slide well-md" >
+                    <div class="swiper-slide">
+                        <div class="swiper-slide-caption">
+                            <div class="container text-center">
+                                <div class="row justify-content-lg-center">
+                                    <div class="col-lg-6">
+                                        <blockquote class="quote">
+                                            <p><cite class="text-white text-bold">{{ testimonial.name }}</cite></p>
+                                            <p><q class="text-white">{{ testimonial.text | linebreaksbr }}</q></p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination" ></div>
+        </div>
+    </section>
+    <!-- END Swiper -->
+    <!-- Properties -->
+    <section class="well-sm">
+        <div class="container">
+            <div class="row align-items-lg-center">
+                <div class="col-xl-8 col-lg-7">
+                    <h2 class="line-3">Новости</h2>
+                    <p class="text-default-2 inset-1 letter-spacing-1">Нашего садоводства</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div >
+                <div class="owl-carousel" data-margin="30" data-nav="true" data-items="1" data-md-items="2"
+                     data-lg-items="4" data-lightgallery="group">
+                    {% for post in website_settings.get_latest_8_posts %}
+                    <div class="owl-item">
+                        <div class="thumb">
+                            <a href="{{ post.get_url }}">
+                                {%  if post.image_thumb_url %}
+                                <img src="{{ post.image_thumb_url }}" width="270" height="236" alt="{{ post.get_title }}"/>
+                                {%  else %}
+                                <img src="{% static 'website/images/stub.png' %}" width="270" height="236" alt=""/>
+                                {%  endif %}
+                                <div class="thumb__overlay"></div>
+                            </a>
+                        </div>
+                        <h3><a href="{{ post.get_url }}">{{ post.get_title | truncatechars:20 }}</a></h3>
+                        <h6 class="text-primary">{{ post.get_date_str }}</h6>
+                        <p>
+                            <strong>{{ post.get_header }}</strong><br>
+                            {{ post.get_abstract | truncatechars:150 }}
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Properties -->
+    <!-- Email -->
+    <section class="well-xl-1 bg-2">
+        <div class="container">
+            <div class="row justify-content-lg-center">
+                <div class="col-lg-6">
+                    <!-- RD Mailform -->
+
+                    <!-- END RD Mailform -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Email -->
+    <!-- News -->
+    <section class="well-sm-1">
+        <div class="container">
+            <h2 class="line-3">Интересные</h2>
+            <p class="text-default-2 inset-1 letter-spacing-1">и полезные статьи</p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                {%  for chpage in website_settings.get_favorite_pages %}
+                <div class=" col-12 col-sm-6  col-md-4 col-lg-3">
+                    <a href="{{ chpage.get_url }}">
+                        {% if chpage.image_thumb_url %}
+                        <img src="{{ chpage.image_thumb_url }}" width="370" height="316" alt="{{ chpage.get_header }}"/>
+                        {% else %}
+                        <img src="{% static 'website/images/stub.png' %}" width="370" height="316" alt=""/>
+                        {% endif %}
+                    </a>
+                    <h3><a href="{{ chpage.get_url }}"> {{ chpage.get_header }}</a></h3>
+                    {% if chpage.subheader %}<h6 class="text-primary">{{ chpage.subheader }}</h6>{%  endif %}
+                    {{ chpage.content | striptags | truncatechars:200 | safe }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </section>
+    <!-- END News -->
+    {% include 'website/sections/map.html' %}
+</main>
+{% endblock %}

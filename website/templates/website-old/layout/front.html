@@ -1,0 +1,28 @@
+{% extends 'website/layout/global.html' %}{% load staticfiles %}
+{% block layouted_content %}
+    <header class="page-header page-header1">
+            <!-- Swiper -->
+            <div class="swiper-container swiper-slider" data-height="39.365853658536585365853658536585%" data-min-height="400px" data-autoplay="2500">
+                <div class="swiper-wrapper">
+                    {% for slide in website_frontpage.slides.all     %}
+                        <div class="swiper-slide" data-slide-bg="{{ slide.get_background_url }}">
+                            <div class="swiper-slide-caption">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                    <!-- Swiper Pagination -->
+                    <div class="swiper-pagination" ></div>
+            </div>
+            <!-- END Swiper -->
+        <!-- RD Navbar -->
+        <div class="rd-navbar-wrap" >
+            <nav class="rd-navbar" data-xl-stick-up-offset="700px" data-xxl-stick-up-offset="700px"
+                 data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" >
+                {% include 'website/el/mainmenu.html' %}
+            </nav>
+        </div>
+        <!-- END RD Navbar -->
+    </header>
+{% block content %}{%  endblock %}
+{%  endblock %}
