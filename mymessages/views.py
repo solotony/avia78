@@ -44,7 +44,7 @@ def create(request):
                         messages.add_message(request, messages.ERROR,
                             'Регистрация не удалась, возможно пользователь с таким e-mail уже зарегистрирован')
                     else:
-                        d = {'user': user, 'plain_password':password}
+                        d = {'user': msg.user, 'plain_password':password}
                         template_t = get_template('email/user-registered.txt')
                         message_t = template_t.render(d)
                         try:
@@ -103,7 +103,7 @@ def create_doc(request):
                             'Регистрация не удалась, возможно пользователь с таким e-mail уже зарегистрирован')
                     else:
 
-                        d = {'user': user, 'plain_password':password}
+                        d = {'user': msg.user, 'plain_password':password}
                         template_t = get_template('email/user-registered.txt')
                         message_t = template_t.render(d)
                         try:
