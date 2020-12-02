@@ -40,7 +40,7 @@ else:
 SECRET_KEY = '%@^qt-qw3&87u#$iarz0p##c)xmo8c9=6mk43ew&$j5n$aw4#('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['avia78.beget.tech', '127.0.0.1', 'localhost', 'avia78.ru', 'www.avia78.ru']
 SECURE_SSL_REDIRECT = True
@@ -194,7 +194,7 @@ COPY_START_YEAR = 2009
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = "gruz@avia78.ru"
-EMAIL_HOST_PASSWORD = "Ybgbg3bgbg2"
+EMAIL_HOST_PASSWORD = "Gbgbg3bgbg2"
 EMAIL_USE_SSL = True
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

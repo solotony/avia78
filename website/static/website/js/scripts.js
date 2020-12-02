@@ -225,7 +225,11 @@ new Vue({
 					document.getElementById("div_id_otherCountryTo").classList.add("d-none");
 				}
 			}
-		}
+		},
+		pageOrderSearch: function()
+		{
+			if(document.getElementById('page-order-search2').value!="") window.location = "/order/cargo/" + document.getElementById('page-order-search2').value;
+		},
 	},
 	mounted: function() {
 		var from_select = "<option>Страна отправки</option>";

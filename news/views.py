@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
-#from website.views import get_contact
+from website.views import get_contact
 from django.core.paginator import Paginator
 from django.db.models import Q, Count
-#from django.db.models.functions import TruncMonth, TruncYear
+from django.db.models.functions import TruncMonth, TruncYear
 from django.db import connection
 
 # Create your views here.
