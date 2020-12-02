@@ -49,7 +49,7 @@ def create(request):
                         message_t = template_t.render(d)
                         try:
                             send_mail('Регистрация на сайте', message_t, settings.DEFAULT_FROM_EMAIL,
-                                      ['as@solotony.com', settings.NOTIFY_EMAIL])
+                                      [msg.email, settings.NOTIFY_EMAIL])
                         except BadHeaderError:
                             return HttpResponse('Invalid header found.')
 
