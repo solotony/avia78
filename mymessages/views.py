@@ -9,6 +9,7 @@ from .models import Message
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.conf import settings
+import random
 
 @login_required
 def cabinet_index(request):
@@ -38,7 +39,7 @@ def create(request):
                 msg.name = request.user.first_name + ' ' + request.user.last_name
             else:
                 if form.cleaned_data.get('register'):
-                    password = '1qazxsws!@F'
+                    password = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
                     msg.user = User.register(msg.name, msg.email, msg.phone, plain_password=password)
                     if not msg.user:
                         messages.add_message(request, messages.ERROR,
@@ -96,7 +97,7 @@ def create_doc(request):
                 msg.user = request.user
             else:
                 if form.cleaned_data.get('register'):
-                    password = '1qazxsws!@F'
+                    password = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
                     msg.user = User.register(msg.name, msg.email, msg.phone, plain_password=password)
                     if not msg.user:
                         messages.add_message(request, messages.ERROR,
