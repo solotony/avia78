@@ -10,6 +10,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.conf import settings
 import random
+import string
 
 @login_required
 def cabinet_index(request):
