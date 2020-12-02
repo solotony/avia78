@@ -38,11 +38,21 @@ def create(request):
                 msg.name = request.user.first_name + ' ' + request.user.last_name
             else:
                 if form.cleaned_data.get('register'):
-                    msg.user = User.register(msg.name, msg.email, msg.phone)
+                    password = '1qazxsws!@F'
+                    msg.user = User.register(msg.name, msg.email, msg.phone, plain_password=password)
                     if not msg.user:
                         messages.add_message(request, messages.ERROR,
                             'Регистрация не удалась, возможно пользователь с таким e-mail уже зарегистрирован')
                     else:
+                        d = {'user': user, 'plain_password':password}
+                        template_t = get_template('email/user-registered.txt')
+                        message_t = template_t.render(d)
+                        try:
+                            send_mail('Регистрация на сайте', message_t, settings.DEFAULT_FROM_EMAIL,
+                                      ['as@solotony.com', settings.NOTIFY_EMAIL])
+                        except BadHeaderError:
+                            return HttpResponse('Invalid header found.')
+
                         messages.add_message(request, messages.SUCCESS,
                             'Вы зарегистрированы на сайте, письмо с регистрационными данными выслано на ваш адрес')
             msg.status = Message.STATUS_SEND
@@ -86,11 +96,23 @@ def create_doc(request):
                 msg.user = request.user
             else:
                 if form.cleaned_data.get('register'):
-                    msg.user = User.register(msg.name, msg.email, msg.phone)
+                    password = '1qazxsws!@F'
+                    msg.user = User.register(msg.name, msg.email, msg.phone, plain_password=password)
                     if not msg.user:
                         messages.add_message(request, messages.ERROR,
                             'Регистрация не удалась, возможно пользователь с таким e-mail уже зарегистрирован')
                     else:
+
+                        d = {'user': user, 'plain_password':password}
+                        template_t = get_template('email/user-registered.txt')
+                        message_t = template_t.render(d)
+                        try:
+                            send_mail('Регистрация на сайте', message_t, settings.DEFAULT_FROM_EMAIL,
+                                      ['as@solotony.com', settings.NOTIFY_EMAIL])
+                        except BadHeaderError:
+                            return HttpResponse('Invalid header found.')
+
+
                         messages.add_message(request, messages.SUCCESS,
                             'Вы зарегистрированы на сайте, письмо с регистрационными данными выслано на ваш адрес')
             msg.status = Message.STATUS_SEND
