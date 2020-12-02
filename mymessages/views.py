@@ -69,7 +69,7 @@ def create(request):
             message_t = template_t.render(d)
 
             try:
-                send_mail('Вопрос с сайта', message_t, settings.DEFAULT_FROM_EMAIL, ['as@solotony.com', settings.NOTIFY_EMAIL])
+                send_mail('Вопрос с сайта', message_t, settings.DEFAULT_FROM_EMAIL, [settings.NOTIFY_EMAIL])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
 
@@ -110,7 +110,7 @@ def create_doc(request):
                         message_t = template_t.render(d)
                         try:
                             send_mail('Регистрация на сайте', message_t, settings.DEFAULT_FROM_EMAIL,
-                                      ['as@solotony.com', settings.NOTIFY_EMAIL])
+                                      [ settings.NOTIFY_EMAIL ])
                         except BadHeaderError:
                             return HttpResponse('Invalid header found.')
 
