@@ -1,5 +1,6 @@
 from django.urls import path, re_path, reverse
 from . import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', views.front_page, name='website.front'),
